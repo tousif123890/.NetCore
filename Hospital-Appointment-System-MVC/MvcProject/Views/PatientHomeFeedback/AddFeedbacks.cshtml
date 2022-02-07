@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">DEU HOSPITAL</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/PatientHome/Index/">Booking</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="/PatientHomeFeedback/Index/">Feedback</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "PatientLogin", FormMethod.Post))
+                        {
+
+                            <input type="submit" value="LOGOUT" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <center>
+        Click to see doctor information.
+        <br />
+        <br />
+        <a href="/PatientHomeFeedback/List/" class="btn btn-primary">List Doctor</a>
+        <br />
+        <br />
+
+
+        <form class="form-group" method="post">
+            <div>
+                <label>Doctor ID</label>
+                <input type="text" class="form-control" name="doctorID"
+            </div>
+            <div>
+                <label>Patient ID</label>
+                <input type="text" class="form-control" name="patientID"
+            </div>
+            <div>
+                <label>Doctor Name </label>
+                <input type="text" class="form-control" name="doctorName"
+            </div>
+            <div>
+                <label>Doctor Surname</label>
+                <input type="text" class="form-control" name="doctorSurname"
+            </div>
+            <div>
+                <label>Patient Name</label>
+                <input type="text" class="form-control" name="patientName"
+            </div>
+            <div>
+                <label>Patient Surname</label>
+                <input type="text" class="form-control" name="patientSurname"
+            </div>
+            <div>
+                <label>Feedback Content</label>
+                <input type="text" class="form-control" name="feedbackContent"
+            </div>
+            <div>
+                <label>Feedback Date</label>
+                <input type="text" class="form-control" name="feedbackDate"
+            </div>
+            <div>
+                <label>Feedback Hour</label>
+                <input type="text" class="form-control" name="feedbackHour"
+            </div>
+
+
+            <div style="margin-top:15px">
+                <button class="btn btn-info" >Add Feedback</button>
+            </div>
+        </form>
+        <br />
+        <br />
+
+    </center>
+
+</body>
+</html>

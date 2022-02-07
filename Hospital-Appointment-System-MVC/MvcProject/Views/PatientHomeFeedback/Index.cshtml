@@ -1,0 +1,104 @@
+﻿@using MvcProject.Models;
+@model List<FEEDBACK>
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">DEU HOSPITAL</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/PatientHome/Index/">Booking</a></li>
+                        <li><a href="/PatientHomeContact/Index/">Contact</a></li>
+                        <li><a href="/PatientHomeFeedback/Index/">Feedback</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "PatientLogin", FormMethod.Post))
+                        {
+
+                            <input type="submit" value="LOGOUT" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <title> DEU Hospital </title>
+    <style type="text/css">
+
+        #metin {
+            text-align: justify;
+            height: cover;
+            width: 1200px;
+            word-wrap: break-word;
+            margin: 0px auto;
+            background: white;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #8fc1da;
+            line-height: 200%
+        }
+    </style>
+
+    <div id="metin">
+        <center><font style="font-family:Trebuchet MS;font-size:48px;18px;color:#e80729;">FEEDBACK</font></font></h1></center>
+        <center><img src="~/Images/feedback.jpg"></center>
+        <br />
+        <br />
+        <font style="font-family:Arial;font-size:18px;color:#black;">
+            You can write a feedback about your appointment.
+        </font>
+        <br />
+        <br />
+        <br />
+
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Feedback ID</th>
+                <th>Doctor Name</th>
+                <th>Doctor Surname</th>
+                <th>Feedback Date</th>
+                <th>Feedback Hour</th>
+            </tr>
+            <tbody>
+                @foreach (var fd in Model)
+                {
+                    <tr>
+                        <td>@fd.feedbackID</td>
+                        <td>@fd.doctorName</td>
+                        <td>@fd.doctorSurname</td>
+                        <td>@fd.feedbackDate</td>
+                        <td>@fd.feedbackHour</td>
+                    </tr>
+
+                    <tr>
+                        <th>Feedback Content</th>
+                    </tr>
+                    <tr>
+                        <td>@fd.feedbackContent</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <center><a href="/PatientHomeFeedback/AddFeedbacks/" class="btn btn-primary">Add Feedback</a> </center>
+    </div>
+
+</body>
+</html>

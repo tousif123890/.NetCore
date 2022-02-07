@@ -1,0 +1,126 @@
+﻿@using MvcProject.Models;
+@model  List<APPOINTMENT>
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">DEU HOSPITAL</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="/DoctorAppointments/Index/">Appointments</a></li>
+                        <li><a href="/DoctorContact/Index/">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "DoctorLogin", FormMethod.Post))
+                        {
+
+                            <input type="submit" value="LOGOUT" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <head>
+        <title> DEU Hospital </title>
+        <style type="text/css">
+            body {
+                background-image: url("bg.jpg");
+                background-size: cover;
+            }
+
+            #metin {
+                text-align: justify;
+                height: cover;
+                width: 1000px;
+                word-wrap: break-word;
+                margin: 0px auto;
+                background: white;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: #8fc1da;
+                line-height: 200%
+            }
+        </style>
+    </head>
+
+
+    <div id="metin">
+
+        <center><h1><font style="font-family:Trebuchet MS;font-size:48px;18px;color:#e80729;">APPOINTMENTS</font></font></h1></center>
+        <font style="font-family:Arial;font-size:18px;color:#black;">
+            <br />
+            Enter your Name-Surname to see your appointments.
+            <br />
+
+
+
+            @using (Html.BeginForm("Index", "DoctorAppointments", FormMethod.Get))
+            {
+                <p>
+                    <center>
+                        <b></b>Doctor Name @Html.TextBox("p")
+                        <b></b>Doctor Surname @Html.TextBox("p2")
+                        <br />
+                        <br />
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                    </center>
+                </p>
+            }
+            <br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Doctor ID</th>
+                    <th>Doctor Name</th>
+                    <th>Doctor Surname</th>
+                    <th>Doctor Department</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Hour</th>
+
+                </tr>
+
+
+                <tbody>
+                    @foreach (var appn in Model)
+                    {
+                        <tr>
+                            <td>@appn.doctorID</td>
+                            <td>@appn.doctorName</td>
+                            <td>@appn.doctorSurname</td>
+                            <td>@appn.department</td>
+                            <td>@appn.appointmentDate</td>
+                            <td>@appn.appointmentHour</td>
+                            <td><a href="/DoctorAppointments/DeleteAppointments/@appn.appointmentID" class="btn btn-danger">DELETE</a></td>
+                            <td><a href="/DoctorAppointments/GetApp/@appn.appointmentID" class="btn btn-success">UPDATE</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+
+</div>
+
+</body>
+</html>

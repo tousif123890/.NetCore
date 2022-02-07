@@ -1,0 +1,124 @@
+﻿@using MvcProject.Models;
+@model  List<MESSAGE>
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">DEU HOSPITAL</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/PatientHome/Index/">Booking</a></li>
+                        <li><a href="/PatientHomeContact/Index/">Contact</a></li>
+                        <li><a href="/PatientHomeFeedback/Index/">Feedback</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "PatientLogin", FormMethod.Post))
+                        {
+
+                            <input type="submit" value="LOGOUT" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <head>
+        <title> DEU Hospital </title>
+        <style type="text/css">
+            body {
+                background-image: url("bg.jpg");
+                background-size: cover;
+            }
+
+            #metin {
+                text-align: justify;
+                height: cover;
+                width: 1000px;
+                word-wrap: break-word;
+                margin: 0px auto;
+                background: white;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: #8fc1da;
+                line-height: 200%
+            }
+        </style>
+    </head>
+
+
+    <div id="metin">
+
+        <center><h1><font style="font-family:Trebuchet MS;font-size:48px;18px;color:#e80729;">CONTACTS</font></font></h1></center>
+        <font style="font-family:Arial;font-size:18px;color:#black;">
+            <br />
+            Enter the name of the doctor whose message you want to see.
+            <br />
+            <br />
+
+
+            @using (Html.BeginForm("Index", "PatientHomeContact", FormMethod.Get))
+            {
+                <p>
+                    <center>
+                        <b></b>Search Doctor @Html.TextBox("p")
+                        <br />
+                        <br />
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                    </center>
+                </p>
+            }
+            <br />
+
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Sender ID</th>
+                    <th>Sender Name</th>
+                    <th>Sender Surname</th>
+                    <th>Receiver Name</th>
+                    <th>Message Content</th>
+                    <th>Message Date</th>
+                    <th>Message Hour</th>
+                    <th>DELETE</th>
+
+                </tr>
+
+                <tbody>
+                    @foreach (var ptn in Model)
+                    {
+                        <tr>
+                            <td>@ptn.senderID</td>
+                            <td>@ptn.senderName</td>
+                            <td>@ptn.senderSurname</td>
+                            <td>@ptn.receiverName</td>
+                            <td>@ptn.receiverSurname</td>
+                            <td>@ptn.messageContent</td>
+                            <td>@ptn.messageDate</td>
+                            <td>@ptn.messageHour</td>
+
+                            <td><a href="/PatientHomeContact/DeleteMessage/@ptn.messageID" class="btn btn-danger">DELETE</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <center> <a href="/PatientHomeContact/AddMessage/" class="btn btn-primary">Add Message</a> </center>
+</div>
+
+</body>
+</html>
